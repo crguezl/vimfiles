@@ -1,3 +1,10 @@
+" Comment if not spanish
+"set spell
+"set spelllang=es
+
+let g:JSLintHighlightErrorLine = 0
+
+let mapleader="º"
 set nocompatible    " We're running Vim, not Vi!
 
 set number          "add line numbers
@@ -66,12 +73,35 @@ filetype indent on        " Enable filetype-specific indenting
 filetype plugin on        " Enable filetype-specific plugins
 
 " Load colorscheme
-set t_Co=256
-set background=dark
-let g:solarized_termcolors=256
-colorscheme solarized
+"set t_Co=256
+"set background=dark
+"let g:solarized_termcolors=256
+"colorscheme solarized
+"colorscheme blue
 
 " Include user's local vim config
-if filereadable(expand("~/.vimrc.local"))
-  source ~/.vimrc.local
+if filereadable(expand(".vimrc.local"))
+  source .vimrc.local
 endif
+
+"Coffee config
+let coffee_compile_vert = 1
+au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
+au BufNewFile,BufRead *.treetop setlocal ft=treetop
+
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+"
+" Kevin: columna 80 para marcar el final de donde escribir
+" if exists('+colorcolumn')
+"   set colorcolumn=80
+" else
+"   au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+" endif
+
+"jsbeautify
+" https://github.com/maksimr/vim-jsbeautify
+map <c-k> :call JsBeautify()<cr>
+
+" associate *.jison with yacc filetype
+au BufRead,BufNewFile *.jison setfiletype yacc
