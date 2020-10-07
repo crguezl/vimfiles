@@ -46,3 +46,6 @@
   path   = bundle/command-t
   url    = git://git.wincent.com/command-t.git
   ignore = dirty
+[submodule "bundle/mustache"]
+	path = bundle/mustache
+	url = git://github.com/mustache/vim-mustache-handlebars.git

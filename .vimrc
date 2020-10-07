@@ -1,3 +1,32 @@
+" Specify a directory for plugins
+" - For Neovim: ~/.local/share/nvim/plugged
+" - Avoid using standard Vim directory names like 'plugin'
+
+
+"call plug#begin('~/.vim/plugged')
+"
+"Plug 'kyuhi/vim-emoji-complete'
+"Plug 'junegunn/vim-emoji'
+"
+"call plug#end()
+
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'ap/vim-css-color.git'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+
 " Comment if not spanish
 "set spell
 "set spelllang=es
@@ -28,7 +57,7 @@ set list listchars=tab:..,trail:·
 
 " Some stuff to get the mouse going in term
 set mouse=a
-set ttymouse=xterm2
+" set ttymouse=xterm2 error with neovim
 
 " Tab completion options
 set wildmode=list:longest,list:full  "make cmdline tab completion similar to bash
@@ -54,6 +83,10 @@ set laststatus=2
 
 " Toggle NERDTree
 silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
+map <F2> :NERDTreeToggle<CR>
+
+" open a NERDTree automatically when vim starts up
+autocmd vimenter * NERDTree
 
 " Clean out all trailing whitespace or tabs
 nnoremap <silent> <Leader>c :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>:retab<CR>
@@ -88,6 +121,16 @@ endif
 let coffee_compile_vert = 1
 au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
 au BufNewFile,BufRead *.treetop setlocal ft=treetop
+
+"ejs config
+au BufNewFile,BufRead *.ejs set filetype=html
+au BufNewFile,BufRead *.pug set filetype=jade
+
+"au BufNewFile,BufRead *.egg set filetype=lisp
+au BufRead,BufNewFile *.egg set filetype=egg
+
+"mjs 
+au BufNewFile,BufRead *.mjs set filetype=javascript
 
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
